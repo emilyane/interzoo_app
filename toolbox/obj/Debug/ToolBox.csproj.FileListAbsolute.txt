@@ -1,0 +1,10 @@
+C:\Users\i.borkowska\source\repos\xmas2\ASP-NET-Xmas2\ToolBox\bin\Debug\ToolBox.dll
+C:\Users\i.borkowska\source\repos\xmas2\ASP-NET-Xmas2\ToolBox\bin\Debug\ToolBox.pdb
+C:\Users\i.borkowska\source\repos\xmas2\ASP-NET-Xmas2\ToolBox\obj\Debug\ToolBox.csprojAssemblyReference.cache
+C:\Users\i.borkowska\source\repos\xmas2\ASP-NET-Xmas2\ToolBox\obj\Debug\ToolBox.dll
+C:\Users\i.borkowska\source\repos\xmas2\ASP-NET-Xmas2\ToolBox\obj\Debug\ToolBox.pdb
+C:\Users\e.smith\source\repos\InterZoo\toolbox\bin\Debug\ToolBox.dll
+C:\Users\e.smith\source\repos\InterZoo\toolbox\bin\Debug\ToolBox.pdb
+C:\Users\e.smith\source\repos\InterZoo\toolbox\obj\Debug\toolbox.csprojAssemblyReference.cache
+C:\Users\e.smith\source\repos\InterZoo\toolbox\obj\Debug\ToolBox.dll
+C:\Users\e.smith\source\repos\InterZoo\toolbox\obj\Debug\ToolBox.pdb

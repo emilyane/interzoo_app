@@ -1,0 +1,8 @@
+C:\Users\e.smith\source\repos\InterZoo\interzooDAL\bin\Debug\interzooDAL.dll
+C:\Users\e.smith\source\repos\InterZoo\interzooDAL\bin\Debug\interzooDAL.pdb
+C:\Users\e.smith\source\repos\InterZoo\interzooDAL\bin\Debug\ToolBox.dll
+C:\Users\e.smith\source\repos\InterZoo\interzooDAL\bin\Debug\ToolBox.pdb
+C:\Users\e.smith\source\repos\InterZoo\interzooDAL\obj\Debug\interzooDAL.csprojAssemblyReference.cache
+C:\Users\e.smith\source\repos\InterZoo\interzooDAL\obj\Debug\interzooDAL.csproj.CopyComplete
+C:\Users\e.smith\source\repos\InterZoo\interzooDAL\obj\Debug\interzooDAL.dll
+C:\Users\e.smith\source\repos\InterZoo\interzooDAL\obj\Debug\interzooDAL.pdb
