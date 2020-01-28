@@ -9,20 +9,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="en">
 
 <head>
-    <title>Creature Animals Category Flat Bootstrap Responsive website Template | Home :: w3layouts</title>
+    <title>InterZoo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8" />
     <meta name="keywords" content="Creature Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
-    <script>
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
 
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
+
+    @Scripts.Render("~/js/loadEvent")
+    @*<script>
+            addEventListener("load", function () {
+                setTimeout(hideURLbar, 0);
+            }, false);
+
+            function hideURLbar() {
+                window.scrollTo(0, 1);
+            }
+        </script>*@
     <!-- Custom Theme files -->
     @Styles.Render("~/css/bootstrap.css", "~/css/blast.min.css", "~/css/portfolio.css", "~/css/style.css", "~/css/font-awesome.min.css")
     @*<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">*@
@@ -30,7 +33,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     @*<link href="css/blast.min.css" rel="stylesheet" />*@
     <!-- portfolio -->
     @*<link href="css/portfolio.css" type="text/css" rel="stylesheet" media="all">
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">*@
+        <link href="css/style.css" type="text/css" rel="stylesheet" media="all">*@
     <!-- font-awesome icons -->
     @*<link href="css/font-awesome.min.css" rel="stylesheet">*@
     <!-- online-fonts -->
@@ -39,6 +42,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    @RenderSection("header", required: true)
     @RenderBody()
     <!-- //contact -->
     <!-- footer -->
@@ -93,10 +97,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post" class="p-sm-3">
+                    <form action="/Login/Login" method="post" class="p-sm-3">
+                        @* @Html.AntiForgeryToken()*@
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Username</label>
-                            <input type="text" class="form-control" placeholder="" name=" name" id="recipient-name"
+                            <label for="recipient-name" class="col-form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="soso@sisi.com " name="Courriel" id="recipient-name"
                                    required="">
                         </div>
                         <div class="form-group">
@@ -120,7 +125,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                         <p class="text-center dont-do modal-footer1">
                             Don't have an account?
-                            <a href="#" data-toggle="modal" data-target="#exampleModal1" class="font-weight-bold"
+                            <a href="#exampleModal1" data-toggle="modal" data-target="#exampleModal1" class="font-weight-bold"
                                data-blast="color">
                                 Register Now
                             </a>
@@ -144,25 +149,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post" class="p-sm-3">
+                    <form enctype="multipart/form-data" action="/Register/Index" method="post" class="p-sm-3">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Username</label>
-                            <input type="text" class="form-control" placeholder="" name=" name" id="recipient-rname"
+                            <label for="recipient-name" class="col-form-label">Nom</label>
+                            <input type="text" class="form-control" placeholder="" name="Nom" id="recipient-rname"
+                                   required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Prenom</label>
+                            <input type="text" class="form-control" placeholder="" name="Prenom" id="recipient-rname"
                                    required="">
                         </div>
                         <div class="form-group">
                             <label for="recipient-email" class="col-form-label">Email</label>
-                            <input type="email" class="form-control" placeholder="" name="Email" id="recipient-email"
+                            <input type="email" class="form-control" placeholder="" name="Courriel" id="recipient-email"
                                    required="">
                         </div>
                         <div class="form-group">
-                            <label for="password1" class="col-form-label">Password</label>
-                            <input type="password" class="form-control" placeholder="" name="Password" id="password1"
-                                   required="">
-                        </div>
-                        <div class="form-group">
-                            <label for="password2" class="col-form-label">Confirm Password</label>
-                            <input type="password" class="form-control" placeholder="" name="Confirm Password" id="password2"
+                            <label for="password1" class="col-form-label">Mot de passe</label>
+                            <input type="password" class="form-control" placeholder="" name="MotDePasse" id="password1"
                                    required="">
                         </div>
                         <div class="sub-w3l">
@@ -176,6 +181,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="right-w3l">
                             <input type="submit" class="form-control" value="Register">
                         </div>
+                        @if (ViewBag.SuccessMessage != null)
+                        {
+                            <div class="alert alert-info">
+                                @ViewBag.SuccessMessage
+                            </div>
+                        }
                     </form>
                 </div>
             </div>
@@ -259,47 +270,48 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     @*<script src="js/jquery-2.2.3.min.js"></script>*@
     <!-- //js -->
     <!-- script for password match -->
-    <script>
-        window.onload = function () {
-            document.getElementById("password1").onchange = validatePassword;
-            document.getElementById("password2").onchange = validatePassword;
-        }
+    @Scripts.Render("~/js/password.js")
+    @*<script>
+            window.onload = function () {
+                document.getElementById("password1").onchange = validatePassword;
+                document.getElementById("password2").onchange = validatePassword;
+            }
 
-        function validatePassword() {
-            var pass2 = document.getElementById("password2").value;
-            var pass1 = document.getElementById("password1").value;
-            if (pass1 != pass2)
-                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-            else
-                document.getElementById("password2").setCustomValidity('');
-            //empty string means no validation error
-        }
-    </script>
+            function validatePassword() {
+                var pass2 = document.getElementById("password2").value;
+                var pass1 = document.getElementById("password1").value;
+                if (pass1 != pass2)
+                    document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+                else
+                    document.getElementById("password2").setCustomValidity('');
+                //empty string means no validation error
+            }
+        </script>*@
     <!-- script for password match -->
     <!-- Banner  Responsiveslides -->
     @Scripts.Render("~/js/responsiveslides.min.js")
     @*<script src="js/responsiveslides.min.js"></script>*@
 
-    <script>
-        // You can also use"$(window).load(function() {"
-        $(function () {
-            // Slideshow 4
-            $("#slider3").responsiveSlides({
-                auto: true,
-                pager: true,
-                nav: false,
-                speed: 500,
-                namespace: "callbacks",
-                before: function () {
-                    $('.events').append("<li>before event fired.</li>");
-                },
-                after: function () {
-                    $('.events').append("<li>after event fired.</li>");
-                }
-            });
+    @*<script>
+            // You can also use"$(window).load(function() {"
+            $(function () {
+                // Slideshow 4
+                $("#slider3").responsiveSlides({
+                    auto: true,
+                    pager: true,
+                    nav: false,
+                    speed: 500,
+                    namespace: "callbacks",
+                    before: function () {
+                        $('.events').append("<li>before event fired.</li>");
+                    },
+                    after: function () {
+                        $('.events').append("<li>after event fired.</li>");
+                    }
+                });
 
-        });
-    </script>
+            });
+        </script>*@
     <!-- //Banner  Responsiveslides -->
     <!-- Scrolling Nav JavaScript -->
     @Scripts.Render("~/js/scrolling-nav.js")
@@ -309,19 +321,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- portfolio -->
     @Scripts.Render("~/js/jquery.picEyes.js")
     @*<script src="js/jquery.picEyes.js"></script>*@
-    <script>
-        $(function () {
-            //picturesEyes($('.demo li'));
-            $('.demo li').picEyes();
-        });
-    </script>
+    @*<script>
+            $(function () {
+                //picturesEyes($('.demo li'));
+                $('.demo li').picEyes();
+            });
+        </script>*@
     <!-- //portfolio -->
     <!-- start-smooth-scrolling -->
     @Scripts.Render("~/js/move-top.js")
     @*<script src="js/move-top.js"></script>*@
     @Scripts.Render("~/js/easing.js")
     @*<script src="js/easing.js"></script>*@
-    <script>
+    @*<script>
         jQuery(document).ready(function ($) {
             $(".scroll").click(function (event) {
                 event.preventDefault();
@@ -330,11 +342,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     scrollTop: $(this.hash).offset().top
                 }, 1000);
             });
-        });
-    </script>
+        });*@
+    @*</script>*@
     <!-- //end-smooth-scrolling -->
     <!-- smooth-scrolling-of-move-up -->
-    <script>
+    @Scripts.Render("~/js/smooth-scrolling-of-move-up.js")
+    @*<script>
         $(document).ready(function () {
             /*
             var defaults = {
@@ -349,7 +362,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             });
 
         });
-    </script>
+    </script>*@
     @Scripts.Render("~/js/SmoothScroll.min.js")
     @*<script src="js/SmoothScroll.min.js"></script>*@
     <!-- //smooth-scrolling-of-move-up -->

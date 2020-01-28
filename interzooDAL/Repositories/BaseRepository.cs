@@ -87,6 +87,7 @@ namespace interzooDAL.Repositories
             }
         }
 
+        // methodes que ses enfants devront implémenter
         protected T getOne(Func<SqlDataReader, T> selector, Dictionary<string, object> QueryParameters)
         {
             Command cmd = new Command(SelectOneCommand);
