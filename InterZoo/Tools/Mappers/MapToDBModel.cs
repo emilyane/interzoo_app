@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
-///using Xmas.Areas.Membre.Models;
 using interzooDAL.Models;
 using interzooDAL.Repositories;
-//using Xmas.Models;
+using InterZoo.Models;
+
 
 namespace InterZoo.Tools.Mappers
 {
@@ -16,23 +16,32 @@ namespace InterZoo.Tools.Mappers
     /// </summary>
     public static class MapToDBModel
     {
-        public static Zookeeper LoginToZookeeper(LoginModel lm)
+        public static Zookeeper LoginToZookeeper(LoginModel lz)
         {
             return new Zookeeper()
             {
-                Email = lm.Email,
-                Password = lm.Password
+                Email = lz.Email,
+                Password = lz.Password
             };
         }
 
-        public static ZookeeperModel MembreToMembreModel(Zookeeper membre)
+        public static Volunteer LoginToVolunteer(LoginModel lv)
         {
-            if (zookeeper == null) return null;
-            return new ZookeeperModel()
+            return new Volunteer()
             {
-                FirstName = zookeeper.FirstName
+                Email = lv.Email,
+                Password = lv.Password
             };
         }
+
+        //public static ZookeeperModel MembreToMembreModel(Zookeeper membre)
+        //{
+        //    if (zookeeper == null) return null;
+        //    return new ZookeeperModel()
+        //    {
+        //        FirstName = zookeeper.FirstName
+        //    };
+    }
 
         //public static CadeauxModel CadeauxToCadeauxModel(Cadeau c)
         //{
@@ -60,30 +69,30 @@ namespace InterZoo.Tools.Mappers
         //    };
         //}
 
-        public static Membre RegisterToMembre(RegisterModel rm)
-        {
-            return new Membre()
-            {
-                Nom = rm.Nom,
-                Prenom = rm.Prenom,
-                Surnom = rm.Surnom,
-                Courriel = rm.Email,
-                MotDePasse = rm.MotDePasse
-            };
-        }
+        //public static Membre RegisterToMembre(RegisterModel rm)
+        //{
+        //    return new Membre()
+        //    {
+        //        Nom = rm.Nom,
+        //        Prenom = rm.Prenom,
+        //        Surnom = rm.Surnom,
+        //        Courriel = rm.Email,
+        //        MotDePasse = rm.MotDePasse
+        //    };
+        //}
 
-        internal static ProfileModel MemberToProfile(Membre mmodel)
-        {
-            if (mmodel == null) return null;
-            return new ProfileModel()
-            {
-                Id = mmodel.Id,
-                Nom = mmodel.Nom,
-                Prenom = mmodel.Prenom,
-                Surnom = mmodel.Surnom,
-                Email = mmodel.Courriel
-            };
-        }
+        //internal static ProfileModel MemberToProfile(Membre mmodel)
+        //{
+        //    if (mmodel == null) return null;
+        //    return new ProfileModel()
+        //    {
+        //        Id = mmodel.Id,
+        //        Nom = mmodel.Nom,
+        //        Prenom = mmodel.Prenom,
+        //        Surnom = mmodel.Surnom,
+        //        Email = mmodel.Courriel
+        //    };
+        //}
 
         //public static Groupe SaveGroupModelToGroup(SaveGroupModel gm)
         //{

@@ -5,7 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using interzooDAL;
 using interzooDAL.Models;
-
+using System.Configuration;
+using InterZoo.Tools;
+using InterZoo.Tools.Mappers;
+using interzooDAL.Repositories;
+using InterZoo.Models;
 
 namespace InterZoo.Controllers
 {
@@ -32,6 +36,7 @@ namespace InterZoo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //[Required]??
         public ViewResult Register(RegisterModel Rm, HttpPostedFileBase ProfilePicture)
         {
 
@@ -40,7 +45,7 @@ namespace InterZoo.Controllers
             List<string> matchContentType = new List<string>() { "image/jpeg", "image/png", "image/gif" };
             if (!matchContentType.Contains(ProfilePicture.ContentType) || ProfilePicture.ContentLength > 80000)
             {
-                ViewBag.ErrorMessage = "Le fichier ne possède pas une extension autorisée (png, jpg,gif)";
+                ViewBag.ErrorMessage = "You need to use the following image extensions: png, jpg, gif";
                 return View("Login");
             }
 
@@ -61,13 +66,13 @@ namespace InterZoo.Controllers
             }
             else
             {
-                MembreRepository Mr = new MembreRepository(ConfigurationManager.ConnectionStrings["CnstrDev"].ConnectionString);
-                //I have to call the Insert function from MembreRepository
-                //If the insert succeed, we get a complete Member with id value (calculated by the database)
+                ZookeeperRepository Zr = new ZookeeperRepository(ConfigurationManager.ConnectionStrings["CnstrDev"].ConnectionString);
+                //I have to call the Insert function from ZookeeperRepository
+                //If the insert succeeds, we get a complete Zookeeper with id value (calculated by the database)
                 //If the insert failed, we receive a null value
-                //We have to convert the registerModel(viewmodel) to a MembreModel(Dal) before to call the function
-                // this is why we call the static function RegisterToMembre from the Static lass MapToDBModel
-                Membre M = Mr.Insert(MapToDBModel.RegisterToMembre(Rm));
+                //We have to convert the registerModel(viewmodel) to a ZookeeperModel(Dal) before to call the function
+                // this is why we call the static function RegisterToMembre from the Static class MapToDBModel
+               Zookeeper ZM = Zr.Insert(MapToDBModel.RegisterToZookeeper(Rm));
                 if (M != null)
                 {
                     //Now I can save the picture
