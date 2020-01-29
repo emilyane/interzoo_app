@@ -29,7 +29,7 @@ namespace interzooDAL.Repositories
                                 OUTPUT inserted.idMember VALUES(@idVolunteer, @idVeterinarian, @idZookeeper, @AnimalParent, @idAdmin)";
 
             UpdateCommand = @"UPDATE  Member
-                           SET idVeterinarian=@idVeterinarian, idVolunteer=@idVolunteer, idZookeeper=@idZookeeper, idAnimalParent=@AnimalParent, isAdmin= @idAdmin
+                           SET idVeterinarian=@idVeterinarian, idVolunteer=@idVolunteer, idZookeeper=@idZookeeper, idAnimalParent=@AnimalParent, isAdmin= @isAdmin
                          WHERE IdMember = @idMember;";
             DeleteCommand = @"Delete from  Member  WHERE IdMember = @idMember;";
         }
@@ -40,6 +40,20 @@ namespace interzooDAL.Repositories
             return base.getOne(Map, MapToDico(member));
         }
 
+        public override Member GetZookeeper(int id)
+        {
+            SelectOneCommand = "Select * from Member inner join Zookeeper on Membre.IdZookeeper = Zookeeper.id WHERE Member.idZookeeper=@id";
+            Dictionary<string, object> QueryParameters = new Dictionary<string, object>();
+            QueryParameters.Add("idZookeeper", id);
+            return base.getOne(Map, QueryParameters);
+        }
+
+        public override Member GetVolunteer(int id)
+        {
+            Dictionary<string, object> QueryParameters = new Dictionary<string, object>();
+            QueryParameters.Add("idVolunteer", id);
+            return base.getOne(Map, QueryParameters);
+        }
         public override IEnumerable<Member> GetAll()
         {
             return base.getAll(Map);
@@ -83,6 +97,26 @@ namespace interzooDAL.Repositories
             return base.Delete(QueryParameters);
 
         }
+
+        //public IEnumerable<Groupe> GetAllFromMembre(int idMembre, bool isAdmin = false)
+        //{
+
+        //    SelectAllCommand = @"SELECT        Groupe.*
+        //    FROM            Membre INNER JOIN
+        //                 MembreGroupe ON Membre.IdMembre = MembreGroupe.IdMembre INNER JOIN
+        //                 Groupe ON MembreGroupe.IdGroupe = Groupe.IdGroupe INNER JOIN
+        //                 Evenement ON Groupe.IdEvenement = Evenement.IdEvenement
+        //    WHERE        (Membre.IdMembre = @IdMembre) ";
+        //    if (isAdmin)
+        //    {
+        //        SelectAllCommand += " AND(MembreGroupe.Admin = 1)";
+        //    }
+        //    Dictionary<string, object> QueryParameters = new Dictionary<string, object>();
+        //    QueryParameters.Add("IdMembre", idMembre);
+
+        //    return base.getAll(Map, QueryParameters);
+        //}
+
 
 
         #region Mappers
